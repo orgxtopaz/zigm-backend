@@ -52,22 +52,20 @@ router.route('/:id').delete((req,res) =>{
 })
 
 //update
-router.route('/update/:id').post((req,res) =>{
-    User.findById(req.param.id)
-    .then(user =>{
-        user.fullname = req.body.fullname;
-        user.occupation = req.body.occupation;
-        user.email = req.body.email;
-        user.phonenumber = req.body.phonenumber;
+router.route('/update/:id').post((req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            user.fullname = req.body.fullname;
+            user.occupation = req.body.occupation;
+            user.email = req.body.email;
+            user.phonenumber = req.body.phonenumber;
 
-        user.save()
-            .then(user => res.json("Record was updated."))
-            .catch(err => res.status(400).json('Error: ' + err));
-
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-})
-
+            user.save()
+                .then(user => res.json('Record was updated.'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 
